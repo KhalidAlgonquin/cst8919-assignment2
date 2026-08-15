@@ -3,8 +3,8 @@
 ## Assignment 2: Cloud Service Alternatives Report
 
 **Student Name:** Khalid Amchat  
-**Student Number:** 041125350
-**Date:** August 5, 2026  
+
+**Term:** S26  
 
 ---
 
@@ -20,10 +20,6 @@ This report compares Microsoft Azure services used in CST8919 with their closest
 
 Cloud services are not always exact one-to-one equivalents. In several cases, AWS or GCP requires a combination of services to provide functionality similar to one Azure service.
 
-> **Naming note:** Azure Active Directory is now **Microsoft Entra ID**, and Azure Sentinel is now **Microsoft Sentinel**.
-
-> **Compliance note:** Cloud services can support standards such as ISO 27001, SOC, PCI DSS, HIPAA, GDPR, NIST, and CIS. However, using a service does not automatically make an organization compliant. The organization must configure and operate it correctly.
-
 ---
 
 ## Quick Reference Comparison
@@ -37,7 +33,6 @@ Cloud services are not always exact one-to-one equivalents. In several cases, AW
 | Microsoft Defender for Cloud | Security Hub CSPM + GuardDuty + Inspector | Security Command Center |
 | Microsoft Sentinel | Security Lake + OpenSearch Security Analytics + automation services | Google Security Operations |
 | Azure Resource Manager | AWS CloudFormation + AWS Resource Groups | Cloud Resource Manager + Infrastructure Manager |
-| Azure Logic Apps | AWS Step Functions + EventBridge | Workflows + Eventarc |
 | Azure Key Vault | Secrets Manager + KMS + Certificate Manager | Secret Manager + Cloud KMS + Certificate Manager |
 
 ---
@@ -175,26 +170,7 @@ Cloud services are not always exact one-to-one equivalents. In several cases, AW
 
 ---
 
-# 8. Azure Logic Apps
-
-| Area | Azure Logic Apps | AWS Step Functions + EventBridge | Google Cloud Workflows + Eventarc |
-|---|---|---|---|
-| **Overview** | A managed low-code service for creating workflows that integrate applications, data, APIs, and cloud services. | Step Functions orchestrates distributed applications; EventBridge routes events between services. | Workflows orchestrates services and APIs; Eventarc routes events to supported destinations. |
-| **Core features** | Visual designer, triggers, actions, conditions, loops, connectors, retries, monitoring, and stateful workflows. | State machines, Standard and Express workflows, retries, error handling, service integrations, and event routing. | YAML/JSON workflows, HTTP calls, connectors, conditions, retries, callbacks, service accounts, and event triggers. |
-| **Security and compliance** | Entra ID, managed identities, RBAC, private networking options, Key Vault integration, and workflow history. | IAM roles, CloudWatch Logs, CloudTrail, KMS, private endpoints, and service-level permissions. | IAM service accounts, Cloud Logging, Cloud Audit Logs, VPC Service Controls support, and Cloud KMS options. |
-| **Pricing** | Consumption plans charge per trigger, action, and connector operation. Standard plans charge for reserved hosting capacity. | Standard workflows charge per state transition; Express workflows are based on executions, duration, and memory. | Generally charged by workflow steps and external service usage; event services may add charges. |
-| **DevSecOps integration** | ARM, Bicep, Terraform, VS Code, Azure DevOps, GitHub Actions, APIs, Monitor, and Sentinel playbooks. | CloudFormation, CDK, Terraform, CodePipeline, EventBridge, Lambda, CloudWatch, and APIs. | Terraform, `gcloud`, Cloud Build, Eventarc, Pub/Sub, Cloud Run, Cloud Functions, and APIs. |
-
-### Analysis
-
-- Logic Apps has a large connector ecosystem and is useful for low-code integration and security playbooks.
-- Step Functions is stronger as code-oriented AWS service orchestration, while EventBridge handles event routing.
-- GCP Workflows is the closest orchestration service, with Eventarc supplying event-driven triggers.
-- Workflow identities should use least privilege and secrets should not be hard-coded.
-
----
-
-# 9. Azure Key Vault
+# 8. Azure Key Vault
 
 | Area | Azure Key Vault | AWS Secrets Manager + KMS + Certificate Manager | Secret Manager + Cloud KMS + Certificate Manager |
 |---|---|---|---|
@@ -219,7 +195,7 @@ Cloud services are not always exact one-to-one equivalents. In several cases, AW
 
 | Provider | Main strengths |
 |---|---|
-| **Microsoft Azure** | Strong integration among Entra ID, Azure Monitor, Policy, Defender for Cloud, Sentinel, Resource Manager, Logic Apps, and Key Vault. |
+| **Microsoft Azure** | Strong integration among Entra ID, Azure Monitor, Policy, Defender for Cloud, Sentinel, Resource Manager, and Key Vault. |
 | **AWS** | Highly specialized services, detailed IAM controls, flexible event-driven architecture, and strong infrastructure-as-code options. |
 | **Google Cloud** | Clear resource hierarchy, strong centralized security analytics, effective log routing, managed Terraform deployment, and multicloud security capabilities. |
 
@@ -230,19 +206,6 @@ Cloud services are not always exact one-to-one equivalents. In several cases, AW
 - **GCP** separates identity, hierarchy, infrastructure deployment, secrets, and cryptographic keys into focused services.
 - Exact service equivalence depends on architecture and use case.
 - Pricing comparisons must include related services, not only the main product.
-
-## DevSecOps Best Practices
-
-- Store infrastructure, policies, detections, and workflows in Git.
-- Use pull requests and automated validation before deployment.
-- Use managed or workload identities instead of permanent credentials.
-- Retrieve secrets from a secrets-management service at runtime.
-- Deploy monitoring, logs, alerts, and security controls with the application.
-- Apply least privilege to users, pipelines, and workloads.
-- Use policy as code to prevent non-compliant deployments.
-- Automate response carefully and test workflows before production.
-- Control log volume, retention, and SIEM ingestion costs.
-- Review audit logs and configuration drift regularly.
 
 ---
 
@@ -281,7 +244,6 @@ There is no single best provider for every organization. The choice should depen
 - [Microsoft Defender for Cloud overview](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction)
 - [Microsoft Sentinel overview](https://learn.microsoft.com/en-us/azure/sentinel/overview)
 - [Azure Resource Manager overview](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview)
-- [Azure Logic Apps overview](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview)
 - [Azure Key Vault overview](https://learn.microsoft.com/en-us/azure/key-vault/general/overview)
 
 ## Amazon Web Services
@@ -295,7 +257,6 @@ There is no single best provider for every organization. The choice should depen
 - [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/what-are-securityhub-services.html)
 - [Amazon Security Lake](https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html)
 - [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
-- [AWS Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 - [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 - [AWS Key Management Service](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html)
 
@@ -309,7 +270,6 @@ There is no single best provider for every organization. The choice should depen
 - [Security Command Center](https://docs.cloud.google.com/security-command-center/docs/security-command-center-overview)
 - [Google Security Operations](https://cloud.google.com/security/products/security-operations)
 - [Infrastructure Manager](https://docs.cloud.google.com/infrastructure-manager/docs/overview)
-- [Google Cloud Workflows](https://docs.cloud.google.com/workflows/docs/overview)
 - [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview)
 - [Cloud Key Management Service](https://docs.cloud.google.com/kms/docs)
 
